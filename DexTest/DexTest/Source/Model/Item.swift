@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+struct Item {
+    let index: Int
+    let name: String
+
+    var imageURL: String {
+        return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/\(index).png"
+    }
+}

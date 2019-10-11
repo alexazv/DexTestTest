@@ -7,18 +7,29 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class ItemTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    @IBOutlet weak var lbIndex: UILabel!
+    @IBOutlet weak var lbName: UILabel!
+    @IBOutlet weak var imgSprite: UIImageView!
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    override func prepareForReuse() {
+      super.prepareForReuse()
+        lbName.text = "..."
+        imgSprite.image = nil
+        lbIndex.text = ""
     }
     
+    func update(with model: ItemViewModel) {
+        lbIndex.text = "#\(model.index)"
+        lbName.text = model.name
+
+        if let url = model.image {
+            imgSprite.af_setImage(withURL: url)
+        } else {
+            imgSprite.image = nil
+        }
+    }
 }

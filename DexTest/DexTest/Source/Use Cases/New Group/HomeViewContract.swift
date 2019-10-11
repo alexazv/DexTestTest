@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol HomeViewContract: BaseViewContract {
+    func update(with model: ItemsViewModel)
+}

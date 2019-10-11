@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+protocol BaseViewContract: AnyObject {
+    func setLoading(to loading: Bool)
+}
