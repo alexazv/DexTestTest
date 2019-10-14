@@ -10,4 +10,5 @@ import Foundation
 
 protocol BaseViewContract: AnyObject {
     func setLoading(to loading: Bool)
+    func showError(_ message: String)
 }

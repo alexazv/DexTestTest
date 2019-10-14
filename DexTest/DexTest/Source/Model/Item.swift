@@ -8,9 +8,14 @@
 
 import Foundation
 
-struct Item {
+class Item {
     let index: Int
     let name: String
+
+    init(index: Int, name: String) {
+        self.index = index
+        self.name = name
+    }
 
     var imageURL: String {
         return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/\(index).png"

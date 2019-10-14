@@ -43,6 +43,18 @@ extension HomeViewController: HomeViewContract {
     func setLoading(to loading: Bool) {
         loadingView.alpha = loading ? 0.5 : 0
     }
+
+    func showError(_ message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        okAction.setValue(UIColor.black, forKey: "titleTextColor")
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+
+    func navigateToDetails(index: Int) {
+        navigationController?.pushViewController(ItemDetailViewController(index: index), animated: true)
+    }
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -73,5 +85,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         cell?.update(with: model.items[indexPath.row])
 
         return cell ?? UITableViewCell()
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        guard let index = model?.items[indexPath.row].index else { return }
+        presenter?.onSelect(number: index)
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+         guard let index = model?.items[indexPath.row].index else { return }
+        presenter?.onSelect(number: index)
     }
 }

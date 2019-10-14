@@ -11,4 +11,5 @@ import RxSwift
 
 protocol ItemsDataSource {
     func loadItems(limit: Int, offset: Int) -> Single<[Item]>
+    func loadItemDetail(index: Int) -> Single<ItemDetail>
 }
